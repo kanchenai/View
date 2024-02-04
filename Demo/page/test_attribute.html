@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta name="page-view-size" content="1280*720"/>
+    <meta charset="UTF-8">
+    <title>DEMO</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/test.css">
+    <style>
+        .page_area {
+            position: absolute;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+        }
+
+        .area{
+            position: absolute;
+            left: 355px;
+            width: 350px;
+            height: 720px;
+        }
+
+        .list{
+            position: absolute;
+            left: 735px;
+            top: 0px;
+            width: 160px;
+            height: 720px;
+        }
+
+        .list .item{
+            position: absolute;
+            width: 160px;
+            height: 50px;
+        }
+        .list .item_focus .focus{
+            width: 160px;
+            background: #555555;
+        }
+
+        .list .txt{
+            position: absolute;
+            width: 160px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            top: 0px;
+            left: 0px;
+            white-space: nowrap;
+            overflow: hidden;
+            background: none;
+        }
+    </style>
+</head>
+
+<body>
+<div class="page_area" id="page_area">
+    <div class="bg">
+        <img width="1280" height="720" src="../images/bg.jpg"/>
+    </div>
+    <div class="area" style="left: 0px;" id="area_0"
+         view-click="onChildClickListener"
+         view-focus="onChildFocusChangeListener">
+        <div class="item" style="top:224px;left:191px;" id="area_0_0">
+            <div class="focus"></div>
+            <img src="../images/movie_0.png"/>
+        </div>
+        <div class="item" style="top:18px;left:191px;" id="area_0_1">
+            <div class="focus"></div>
+            <img src="../images/movie_3.png"/>
+        </div>
+        <div class="item" style="top:430px;left:191px;" id="area_0_2">
+            <div class="focus"></div>
+            <img src="../images/movie_3.png"/>
+        </div>
+        <div class="item" style="top:224px;left:18px;" id="area_0_3">
+            <div class="focus"></div>
+            <img src="../images/movie_3.png"/>
+        </div>
+    </div>
+    <div class="area"  id="area_1"
+         view-click="onChildClickListener"
+         view-focus="onChildFocusChangeListener">
+        <div class="item" style="top:224px;left:18px;" id="area_1_0">
+            <div class="focus"></div>
+            <img src="../images/movie_0.png"/>
+        </div>
+        <div class="item" style="top:18px;left:18px;" id="area_1_1">
+            <div class="focus"></div>
+            <img src="../images/movie_3.png"/>
+        </div>
+        <div class="item" style="top:430px;left:18px;" id="area_1_2">
+            <div class="focus"></div>
+            <img src="../images/movie_3.png"/>
+        </div>
+        <div class="item" style="top:224px;left:191px;" id="area_1_3">
+            <div class="focus"></div>
+            <img src="../images/movie_3.png"/>
+        </div>
+    </div>
+    <div class="list" id="poster_list"
+         view-click="onItemClickListener"
+         view-focus="onItemFocusListener"
+         view-adapter="poster_list_adapter"
+         view-marquee="1" view-locate="center">
+        <div class="item">
+            <div class="focus"></div>
+            <div class="txt">434245484325344567689807654</div>
+        </div>
+        <div class="item item_focus" style="top: 50px">
+            <div class="focus"></div>
+            <div class="txt">434245484325344567689807654</div>
+        </div>
+    </div>
+
+    <div class="list" style="left: 950px;width: 330px;" id="poster_recycle"
+         view-click="onChildClickListener"
+         view-focus="onChildFocusChangeListener"
+         view-adapter="poster_recycle_adapter"
+         view-marquee="1"
+         view-locate="center" view-col="2">
+        <div class="item">
+            <div class="focus"></div>
+            <div class="txt">434245484325344567689807654</div>
+        </div>
+        <div class="item item_focus" style="top: 50px">
+            <div class="focus"></div>
+            <div class="txt">434245484325344567689807654</div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/xepg.min.js"></script>
+<script src="../js/view_utils.js"></script>
+<script src="../js/special_views.js"></script>
+<script>
+    var firstFocus = "area_0_0";
+
+    var page_area = null;
+
+    var area_0 = null;
+    var area_1 = null;
+
+    var poster_list = null;
+    var poster_recycle = null;
+
+    window.onload = function () {
+        initView();
+        setView();
+        initUtil();
+
+    };
+
+    View.key.key_back_event = function () {
+        console.log("主页面的返回");
+    }
+
+    var initView = function () {
+        View.init(firstFocus);
+
+        page_area = AreaView.createNew("page_area");
+        page_area.addChilds(["area_0","area_1","poster_list","poster_recycle"])
+
+        area_0 = AreaView.createNew("area_0");
+        area_0.addChilds(["area_0_0","area_0_1","area_0_2","area_0_3"]);
+        area_1 = AreaView.createNew("area_1");
+        area_1.addChilds(["area_1_0","area_1_1","area_1_2","area_1_3"]);
+
+        poster_list = ListView.createNew("poster_list");
+        poster_list.needSelect = true;
+        poster_recycle = RecycleView.createNew("poster_recycle");
+    };
+
+    var setView = function () {
+
+    };
+    var initUtil = function () {
+        var data = [];
+        for (var i = 0; i < 38; i++) {
+            var o = {
+                name: "海报名称--" + (i + 1) + "--" + "加长加长加长加长加长加长加长加长",
+                img: "../images/movie_3.png"
+            }
+            data.push(o);
+        }
+        poster_list.bindData(data);
+        poster_recycle.bindData(data);
+    };
+
+
+    var onChildClickListener = function (view) {
+        console.log(view.id+"被点击");
+    };
+
+    var onChildFocusChangeListener = function (view,hasFocus) {
+        console.log(view.id+""+(hasFocus?"上焦":"失焦"));
+    }
+
+    var onItemClickListener = function (position,view,data) {
+        console.log(view.id+"被点击");
+    }
+
+    var poster_list_adapter = function (idPrefix,position,data) {
+        var div = `<div class="item" style="top: `+(50*position)+`px" id="`+(idPrefix+position)+`">
+            <div class="focus"></div>
+            <div class="txt" id="`+(idPrefix+"txt_"+position)+`">`+position+` 数据展示加长加长加长加长加长</div>
+        </div>`;
+        return div;
+    };
+
+    var poster_recycle_adapter = function (idPrefix,position,row,col,data) {
+        var div = `<div class="item" style="top: `+(50*row)+`px;left: `+(165*col)+`px;" id="`+(idPrefix+position)+`">
+            <div class="focus"></div>
+            <div class="txt" id="`+(idPrefix+"txt_"+position)+`">`+position+` 数据展示加长加长加长加长加长</div>
+        </div>`;
+        return div;
+    };
+
+</script>

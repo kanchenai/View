@@ -1,0 +1,412 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta name="page-view-size" content="1280*720"/>
+    <meta charset="UTF-8">
+    <title>DEMO</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/test.css">
+    <link rel="stylesheet" href="../css/view_style.css">
+</head>
+
+<body>
+<div class="bg">
+    <img width="1280" height="720" src="../images/bg.jpg"/>
+</div>
+
+<div class="item" name="dd" style="top:224px;left:191px;" id="view_0"
+     view-focus="onFocusChangeListener"
+     view-click="onClickListener"
+     view-up="view_1"
+     view-down="view_2"
+     view-left="view_3"
+     view-right="view_4">
+    <div class="focus"></div>
+    <img src="../images/movie_0.png"/>
+    <div class="txt" id="content_name">11212345675432455647657543535647658</div>
+</div>
+
+<div class="item" style="top:18px;left:191px;" id="view_1"
+     view-click="onClickListener"
+     view-down="view_0">
+    <div class="focus"></div>
+    <img src="../images/movie_3.png"/>
+    <div class="txt" id="title">1121234567543245564</div>
+</div>
+
+<div class="item" style="top:430px;left:191px;" id="view_2"
+     view-click="onClickListener"
+     view-up="view_0">
+    <div class="focus"></div>
+    <img src="../images/movie_4.png"/>
+    <div class="txt" id="notice"></div>
+</div>
+
+<div class="item" style="top:224px;left:18px;" id="view_3"
+     view-click="onClickListener"
+     view-left="gridView"
+     view-right="view_0">
+    <div class="focus"></div>
+    <div class="scroller" id="scroller">
+        <img src="../images/movie_0.png" id="pic_1"/>
+        <img style="top: 200px;" src="../images/movie_3.png" id="pic_2"/>
+        <img style="top: 400px;" src="../images/movie_4.png" id="pic_3"/>
+    </div>
+</div>
+
+<div class="item" style="top:224px;left:364px;" id="view_4"
+     view-focus="onFocusChangeListener"
+     view-click="onClickListener"
+     view-up="h_list"
+     view-left="view_0"
+     view-right="v_list">
+    <div class="focus"></div>
+    <div class="carousel" id="carouselView">
+    </div>
+</div>
+
+<div class="h_list" id="h_list"
+     view-animation="1"
+     view-orientation="horizontal"
+     view-loop="0"
+     view-circulate="0"
+     view-marquee="true"
+     view-select="1"
+     view-adapter="h_listAdapter"
+     view-click="onItemClickListener"
+     view-focus="onItemFocusChangeListener"
+     view-down="gridView"
+     view-left="view_1"
+     view-right="view_3">
+    <div class="item" style="left:0px;">
+        <img src="../images/movie_0.png"/>
+        <div class="txt">11212345675432455647657543535647658</div>
+    </div>
+    <div class="item" style="left:143px;">
+        <img src="../images/movie_0.png"/>
+        <div class="txt">11212345675432455647657543535647658</div>
+    </div>
+</div>
+
+<div class="v_list" id="v_list"
+     view-orientation="0"
+     view-locate="center"
+     view-loop="false"
+     view-circulate="true"
+     view-marquee="true"
+     view-select="1"
+     view-adapter="v_listAdapter"
+     view-click="onItemClickListener"
+     view-focus="onItemFocusChangeListener"
+     view-up="h_list"
+     view-down="h_list"
+     view-left="view_4"
+     view-right="gridView">
+</div>
+
+<div class="grid_view" id="gridView"
+     view-orientation="vertical"
+     view-locate="center"
+     view-loop="true"
+     view-marquee="true"
+     view-col="4"
+     view-row="2"
+     view-select="1"
+     view-adapter="gridAdapter"
+     view-click="onItemClickListener"
+     view-focus="onItemFocusChangeListener"
+     view-up="gridView_up"
+     view-down="gridView_down"
+     view-left="v_list"
+     view-right="view_3">
+    <div class="item" style="left:0px;">
+        <img src="../images/movie_0.png"/>
+        <div class="txt">11212345675432455647657543535647658</div>
+    </div>
+    <div class="item" style="top:0px;left: 143px;">
+        <img src="../images/movie_0.png"/>
+        <div class="txt">11212345675432455647657543535647658</div>
+    </div>
+
+    <div class="item" style="top:200px;">
+        <img src="../images/movie_0.png"/>
+        <div class="txt">11212345675432455647657543535647658</div>
+    </div>
+
+    <div class="item" style="top:200px;left: 143px;">
+        <img src="../images/movie_0.png"/>
+        <div class="txt">11212345675432455647657543535647658</div>
+    </div>
+</div>
+
+<div class="dialog" id="dialog" view-visible="onVisibleChangeListener" view-click="onChildClickFocusListener_dialog">
+    <div class="scroll" id="dialog_scroll_0">
+        <div class="pic"><img src="../images/bg.jpg"></div>
+    </div>
+    <div class="scroll" style="top: 56px;" id="dialog_scroll_1">
+        <div class="pic"><img src="../images/bg.jpg" style="top: -56px;left: 400px;"></div>
+    </div>
+    <div class="scroll" style="top: 112px;" id="dialog_scroll_2">
+        <div class="pic"><img src="../images/bg.jpg" style="top: -112px;"></div>
+    </div>
+    <div class="scroll" style="top: 168px;" id="dialog_scroll_3">
+        <div class="pic"><img src="../images/bg.jpg" style="top: -168px;left: 400px;"></div>
+        <div class="btn" style="left: 525px;">
+            <div class="item" id="btn">隐藏弹窗</div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="log_view" style="height: 100px;visibility: hidden;" id="log_view"></div>
+
+</body>
+<script src="../js/xepg.min.js"></script>
+<script src="../js/view_utils.js"></script>
+<script src="../js/special_views.js"></script>
+<script>
+    var firstFocus = "h_list_0";
+
+    var view_0 = null;
+    var view_1 = null;
+    var view_2 = null;
+    var view_3 = null;
+    var view_4 = null;
+
+    var title = null;
+    var carouselView = null;
+    var notice = null;
+    var scroller = null;
+    var h_list = null;
+    var v_list = null;
+    var gridView = null;
+    var dialog = null;
+    var log_view = null;
+
+    var data = [];
+
+    // window.onload = function () {
+    //     initView();
+    //     setView();
+    //     initUtil();
+    // };
+
+    View.key.key_back_event = function () {
+        console.log("主页面的返回");
+    }
+
+    var initView = function () {
+        View.init(firstFocus);
+        view_0 = View.createNew("view_0");
+        view_0.bindTextView(TextView.createNew("content_name"));//绑定textView
+        view_1 = View.createNew("view_1");
+        view_2 = View.createNew("view_2");
+        view_3 = View.createNew("view_3");
+        view_4 = View.createNew("view_4");
+
+        title = TextView.createNew("title");
+        title.marquee();
+        carouselView = CarouselView.createNew("carouselView");
+        notice = NoticeView.createNew("notice");
+        scroller = ScrollView.createNew("scroller");
+        h_list = ListView.createNew("h_list");
+        h_list.isCirculate = true;
+        h_list.isFocusCenter = true;
+
+        v_list = ListView.createNew("v_list");
+
+        gridView = GridView.createNew("gridView");
+        gridView.isLoop = false;
+
+        dialog = Dialog.createNew("dialog");
+        dialog.addChilds(["btn"]);
+        dialog.show = dialogShow;
+        dialog.hide = dialogHide;
+
+        log_view = LogView.createNew("log_view");
+        log_view.show();
+        log_view.i("显示打印");
+
+    };
+
+    var setView = function () {
+        // view_0.setFocusChange(view_1, view_2, view_3, view_4);
+        // view_1.setFocusChange(null, view_0, null, h_list);
+        // view_2.setFocusChange(view_0, null, null, null);
+        // view_3.setFocusChange(null, null, gridView, view_0);
+        // view_4.setFocusChange(h_list, null, view_0, v_list);
+        //
+        // h_list.setFocusChange(null, gridView, view_1, view_3);
+        // v_list.setFocusChange(h_list, h_list, view_4, gridView);
+
+        carouselView.setOnItemChangeListener(function (index, data) {
+            // log_view.addLog(carouselView.id+"序号："+index+",数据："+data);
+        });
+
+        view_1.setOnClickListener(function (view){
+
+        })
+
+    };
+
+    var gridView_up = function () {
+        log_view.i("上翻页");
+    };
+
+    var gridView_down = function () {
+        log_view.e("下翻页");
+    };
+
+    var initUtil = function () {
+
+        for (var i = 0; i < 9; i++) {
+            var o = {
+                name: "海报名称--" + (i + 1) + "--" + "加长加长加长加长加长加长加长加长",
+                img: "../images/movie_3.png"
+            }
+            data.push(o);
+        }
+
+        h_list.bindData(data);//数据绑定
+        v_list.bindData(data);//数据绑定
+        gridView.bindData(data);//数据绑定
+
+        carouselView.addPic("../images/movie_0.png", "图片1");
+        carouselView.addPic("../images/movie_3.png", "图片2");
+        carouselView.addPic("../images/movie_4.png", "图片3");
+        carouselView.duration = 5;
+
+        carouselView.start();
+
+        notice.addNotice("1111111111111111111111", null);
+        notice.addNotice("22222222", null);
+        notice.addNotice("3333333333333333333333", null);
+        notice.start();
+    };
+
+    var onClickListener = function (view) {
+        console.log("点击" + view.id);
+        if (view_3 == view) {
+            var top = scroller.getDom().scrollTop;
+            top = (top + 200) % 600;
+
+            scroller.scrollVerticalTo(top);
+
+
+        } else if (view_1 == view) {
+            // dialog.show();
+            var m_backUrl = window.location.href;
+            m_backUrl = m_backUrl.indexOf("?") != -1 ? m_backUrl.split("?")[0] : m_backUrl;
+            m_backUrl += "?currentId=" + view.id;
+            log_view.i(m_backUrl);
+        } else if (view_0 == view) {
+            dialog.show();
+        }
+    };
+
+
+    var h_listAdapter = function (idPrefix, index, data) {
+        var div = '<div class="item" style="left:' + (143 * index) + 'px;" id="' + (idPrefix + index) + '">'
+            + '<div class="focus"></div>'
+            + '<img src="' + data.img + '" />'
+            + '<div class="txt" id="' + (idPrefix + "txt_" + index) + '">' + data.name + '</div>'
+            + '</div>';
+        return div;
+    }
+
+    var v_listAdapter = function (idPrefix, index, data) {
+        var div = '<div class="item" style="top:' + (200 * index) + 'px;" id="' + (idPrefix + index) + '">'
+            + '<div class="focus"></div>'
+            + '<img src="' + data.img + '" />'
+            + '<div class="txt" id="' + (idPrefix + "txt_" + index) + '">' + data.name + '</div>'
+            + '</div>';
+        return div;
+    }
+
+    var gridAdapter = function (idPrefix, index, row, col, data) {
+        var div = '<div class="item" style="top:' + (200 * row) + 'px;left:' + (143 * col) + 'px;" id="' + (idPrefix + index) + '">'
+            + '<div class="focus"></div>'
+            + '<img src="' + data.img + '" />'
+            + '<div class="txt" id="' + (idPrefix + "txt_" + index) + '">' + data.name + '</div>'
+            + '</div>';
+        return div;
+    };
+
+    var onItemClickListener = function (index, view, data) {
+        var str = "view.id:" + view.id + "--index:" + index + "--数据:" + data.name;
+        if (view.id.indexOf(v_list.idPrefix) == 0) {
+            log_view.i(str);
+        } else if (view.id.indexOf(h_list.idPrefix) == 0) {
+            log_view.w(str);
+        } else {
+            log_view.e(str);
+        }
+
+    };
+
+    var onItemFocusChangeListener = function (position, view, hasFocus) {
+        console.log(view.id + "焦点状态：" + hasFocus);
+    }
+
+    var onFocusChangeListener = function (view, hasFocus) {
+        console.log(view.id + "" + (hasFocus ? "上焦" : "失焦"));
+        // log_view.i(view.id+""+(hasFocus?"上焦":"失焦"));
+        if (view == view_4) {
+            // console.log(hasFocus?"上焦":"失焦");
+            if (hasFocus) {
+                carouselView.stop();
+            } else {
+                if (!carouselView.isCarouse) {
+                    carouselView.start();
+                }
+            }
+        }
+    };
+
+    var onChildClickFocusListener_dialog = function (view) {
+        dialog.hide();
+    };
+
+    var onVisibleChangeListener = function (dialog, isShowing) {
+        console.log("弹窗id:" + dialog.id + ",显示状态：" + isShowing)
+    }
+
+    var dialogShow = function () {
+        dialog.visible();
+        var dialog_scroll_0 = ScrollView.createNew("dialog_scroll_0");
+        var dialog_scroll_1 = ScrollView.createNew("dialog_scroll_1");
+        var dialog_scroll_2 = ScrollView.createNew("dialog_scroll_2");
+        var dialog_scroll_3 = ScrollView.createNew("dialog_scroll_3");
+
+        dialog_scroll_0.setScrollLeft(400);
+        dialog_scroll_1.setScrollLeft(0);
+        dialog_scroll_2.setScrollLeft(400);
+        dialog_scroll_3.setScrollLeft(0);
+
+        dialog_scroll_0.scrollHorizontalTo(0);
+        dialog_scroll_1.scrollHorizontalTo(400);
+        dialog_scroll_2.scrollHorizontalTo(0);
+        dialog_scroll_3.scrollHorizontalTo(400);
+
+    }
+
+    var dialogHide = function () {
+        var dialog_scroll_0 = ScrollView.createNew("dialog_scroll_0");
+        var dialog_scroll_1 = ScrollView.createNew("dialog_scroll_1");
+        var dialog_scroll_2 = ScrollView.createNew("dialog_scroll_2");
+        var dialog_scroll_3 = ScrollView.createNew("dialog_scroll_3");
+
+        dialog_scroll_0.scrollHorizontalTo(400);
+        dialog_scroll_1.scrollHorizontalTo(0);
+        dialog_scroll_2.scrollHorizontalTo(400);
+        dialog_scroll_3.scrollHorizontalTo(0);
+
+
+        setTimeout(function () {
+            dialog.invisible();
+        }, 500);
+    };
+
+</script>

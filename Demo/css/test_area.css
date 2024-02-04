@@ -1,0 +1,188 @@
+.content{
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+}
+.content img{
+    left: 10px;
+    top: 10px;
+}
+
+.area_0{
+    position: absolute;
+    width: 780px;
+    height: 200px;
+}
+
+.area_1{
+    position: absolute;
+    top: 200px;
+    width: 780px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.area_2{
+    position: absolute;
+    top: 400px;
+    width: 780px;
+    height: 200px;
+}
+
+.area_3{
+    position: absolute;
+    left: 5px;
+    top: 100px;
+    width: 225px;
+    height: 520px;
+}
+
+.area_4{
+    position: absolute;
+    left: 1050px;
+    top: 100px;
+    width: 225px;
+    height: 520px;
+    overflow: hidden;
+}
+
+.middle_content{
+    position: absolute;
+    width: 780px;
+    height: 670px;
+    top: 50px;
+    left: 250px;
+    overflow: hidden;
+}
+
+.area_0 .area_0_0{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 155px;
+    height: 200px;
+}
+
+.area_0 .area_0_0 .item{
+    width: 155px;
+    height: 200px;
+}
+
+.area_0 .area_0_0 .focus{
+    background: #ffffff;
+    background-size: 100%;
+    width: 155px;
+    height: 200px;
+}
+
+.area_0 .area_0_1{
+    position: absolute;
+    left: 145px;
+    top: 0px;
+    width: 322px;
+    height: 105px;
+}
+
+.area_0 .area_0_1 .item{
+    width: 322px;
+    height: 105px;
+}
+
+.area_0 .area_0_1 .focus{
+    background: #ffffff;
+    background-size: 100%;
+    width: 322px;
+    height: 105px;
+}
+
+.area_1 .area_1_0{
+    position:absolute;
+    left: 0px;
+    top: 0px;
+    width: 345px;
+    height: 200px;
+}
+
+.area_1 .area_1_0 .item{
+    position:absolute;
+    width: 345px;
+    height: 200px;
+}
+
+.area_1 .area_1_0 .focus{
+    background: #ffffff;
+    background-size: 100%;
+    width: 345px;
+    height: 200px;
+}
+
+.area_1 .area_1_1{
+    position:absolute;
+    left: 0px;
+    top: 0px;
+    width: 155px;
+    height: 200px;
+}
+
+.area_1 .area_1_1 .item{
+    position:absolute;
+    width: 155px;
+    height: 200px;
+}
+
+.area_1 .area_1_1 .focus{
+    background: #ffffff;
+    background-size: 100%;
+    width: 155px;
+    height: 200px;
+}
+
+.area_2 .area_2_0{
+    position:absolute;
+}
+
+.area_2 .area_2_0 .item{
+    position:absolute;
+    width: 130px;
+    height: 40px;
+}
+
+.area_2 .area_2_0 .focus{
+    background: #ffffff;
+    background-size: 100%;
+    width: 150px;
+    height: 60px;
+}
+
+.area_3 .area_3_0,
+.area_3 .area_3_0 .item{
+    position:absolute;
+    width: 225px;
+    height: 70px;
+}
+
+.area_3 .area_3_0 .focus{
+    background: #ffffff;
+    background-size: 100%;
+    width: 225px;
+    height: 70px;
+}
+
+
+.area_4 .area_4_0,
+.area_4 .area_4_0 .item{
+    position:absolute;
+    width: 225px;
+    height: 120px;
+}
+
+.area_4 .area_4_0 .item_focus .focus{
+    background: #ffffff;
+    background-size: 100%;
+    width: 225px;
+    height: 120px;
+}
+
+.item_select {
+    background: green;
+}

@@ -1,0 +1,22 @@
+.toast[view-1bda80]{
+    display: none;
+    overflow: hidden;
+}
+.toast[view-1bda80],
+.toast .bg[view-1bda80],
+.toast .bg img[view-1bda80]{
+    height: 63px;
+}
+
+.toast .bg[view-1bda80]{
+    background: gray;
+    border-radius: 31px;
+}
+
+.toast .txt[view-1bda80]{
+    font-size: 30px;
+    line-height: 63px;
+    text-align: center;
+    height: 63px;
+    white-space: nowrap;
+}

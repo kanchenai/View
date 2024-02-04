@@ -1,0 +1,187 @@
+.item{
+    position: absolute;
+    width: 155px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.item_focus .focus{
+    width: 155px;
+    height: 200px;
+    background: url("../images/poster_focus.png") no-repeat;
+    opacity: 1;
+    animation-name: move;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.item_select .focus{
+    width: 155px;
+    height: 200px;
+    display: block;
+    background: green;
+    opacity: 1;
+    animation-name: move;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.item img{
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    width: 131px;
+    height: 176px;
+}
+
+.item .txt{
+    position: absolute;
+    left: 15px;
+    top: 155px;
+    width: 125px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    background: #555555;
+    font-size: 22px;
+}
+
+.item .carousel{
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    width: 131px;
+    height: 176px;
+    overflow: hidden;
+}
+
+.item .scroller{
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    width: 131px;
+    height: 176px;
+    overflow: hidden;
+}
+
+.item .scroller img{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.h_list{
+    position: absolute;
+    top:18px;
+    left:364px;
+    width: 725px;
+    height: 200px;
+    overflow: hidden;
+    /*-webkit-transition: all .5s ease-in-out;*/
+    /*transition: all .5s ease-in-out;*/
+}
+
+.v_list{
+    position: absolute;
+    top:224px;
+    left:507px;
+    width: 155px;
+    height: 496px;
+    overflow: hidden;
+}
+
+.grid_view{
+    position: absolute;
+    top:224px;
+    left:655px;
+    width: 594px;
+    height: 496px;
+    overflow: hidden;
+}
+
+.dialog{
+    position: absolute;
+    width: 400px;
+    height: 225px;
+    overflow: hidden;
+    top: 247px;
+    left: 440px;
+}
+.dialog .scroll{
+    position: absolute;
+    width: 400px;
+    height: 57px;
+    overflow: hidden;
+}
+.dialog .pic{
+    position: absolute;
+    width: 800px;
+    height: 56px;
+}
+
+.dialog .pic img{
+    position: absolute;
+    width: 400px;
+}
+
+.dialog .btn{
+    position: absolute;
+    height: 42px;
+    width: 150px;
+}
+
+.dialog .btn .item{
+    position: absolute;
+    height: 42px;
+    width: 150px;
+    background: url("../images/cs-btn01.png") no-repeat;
+    background-size:150px 42px;
+    line-height: 38px;
+    text-align: center;
+}
+
+.dialog .btn .item_focus{
+    background: url("../images/cs-btn01_focus.png") no-repeat;
+    background-size:150px 42px;
+    line-height: 38px;
+}
+
+.seekbar{
+    position: absolute;
+    left: 50px;
+    top: 660px;
+    width: 1180px;
+    height: 40px;
+    overflow: hidden;
+}
+
+.recycle_view{
+    position: absolute;
+    top:18px;
+    left:18px;
+    width: 1246px;
+    height: 686px;
+    overflow: hidden;
+}
+
+.scroll_view{
+    position: absolute;
+    top:18px;
+    left:18px;
+    width: 1246px;
+    height: 686px;
+    overflow: hidden;
+}
+
+@keyframes move{
+    from{
+        opacity: 0.3;
+    }
+    to{
+        opacity: 1
+    }
+}

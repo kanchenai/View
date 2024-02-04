@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<style>
+    body{
+        overflow: auto;
+    }
+    .demo_view{
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        font-size: 40px;
+        overflow: hidden;
+        opacity: 0.8;
+        color: #000;
+    }
+    .title{
+        margin-left: 50px;
+        font-size: 40px;
+        height: 40px;
+        line-height: 40px;
+    }
+    .notice_view{
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        width: 300px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 36px;
+        text-align: center;
+        overflow: hidden;
+        opacity: 0.8;
+        background-color:burlywood;
+        white-space: nowrap;
+    }
+    .carousel_view{
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        width: 300px;
+        height: 300px;
+        overflow: hidden;
+        opacity: 0.8;
+        background-color:burlywood;
+    }
+    .log_view{
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        font-size: 40px;
+        width: 300px;
+        height: 300px;
+        overflow: hidden;
+        opacity: 0.8;
+    }
+    .rotation_view{
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        font-size: 10px;
+        width: 300px;
+        height: 300px;
+        overflow: hidden;
+        opacity: 0.8;
+        background-color: cadetblue;
+    }
+    .player_view{
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        font-size: 10px;
+        width: 1230px;
+        height: 670px;
+        overflow: hidden;
+        opacity: 0.8;
+    }
+    .item{
+        width: 300px;
+        height: 80px;
+    }
+
+</style>
+
+<body>
+    <div class="demo_view" style="top: 10px;">
+        <div class="title">noticeView</div>
+        <div class="notice_view" id="notice_view"></div>
+    </div>
+    <div class="demo_view" style="top: 410px;">
+        <div class="title">carouselView</div>
+        <div class="carousel_view" id="carousel_view"></div>
+    </div>
+    <div class="demo_view" style="top: 810px;width: 1280px;height: 300px;">
+        <div class="title">logView</div>
+        <div class="log_view" id="log_view"></div>
+    </div>
+    <div class="demo_view" style="top: 10px; left: 400px;">
+        <div class="title">RotationView</div>
+        <div class="rotation_view" id="rotation_view">
+        </div>
+    </div>
+    <div class="demo_view" style="top: 410px;left: 400px;width: 1280px;height: 720px;">
+        <div class="title">PlayerView</div>
+        <div class="player_view" id="player_view"></div>
+    </div>
+</body>
+<script src="../js/xepg.min.js"></script>
+<script src="../js/view_utils.js"></script>
+<script src="../js/player_util.js"></script>
+<script src="../js/special_views.js"></script>
+<script>
+    var notice_view = null;
+    var carousel_view = null;
+    var log_view = null;
+    var rotation_view = null;
+    var player_view = null;
+    var initView = function(){
+        // notice_view start
+
+        notice_view = NoticeView.createNew('notice_view');
+        for (let i = 0; i < 10; i++) {
+            notice_view.addNotice('notice_view'+i+'加长加长加长')
+        };
+        notice_view.start();//开始
+        // notice_view.stop();//停止
+        // notice_view.clear();//清空数据
+
+        // notice_view end
+
+        // carousel_view start
+
+        carousel_view = CarouselView.createNew('carousel_view');
+        for (let i = 0; i < 10; i++) {
+            carousel_view.addPic('https://via.placeholder.com/272x12' + i)
+        };
+        carousel_view.start();//开始
+        carousel_view.carouselByIndex(0)// 轮播当前index
+        // carousel_view.stop();//停止
+        // carousel_view.clear();//清空数据
+        // carousel_view.getIndex();//获取当前index
+
+        // carousel_view end
+
+        // log_view start
+
+        log_view = LogView.createNew('log_view');
+        log_view.show();
+        for (let i = 0; i < 4; i++) {
+            log_view.i('text' + i);
+            log_view.e('error' + i);
+        };
+        // log_view end
+
+        //rotation_view start
+        rotation_view = RotationView.createNew('rotation_view');
+        var colors = ["red","green","gray","black","yellow","#ff0fff"];
+        rotation_view.setAdapter(function(idPrefix,index,data){
+            var div = '<div class="item" style="top: '+ index*80+'px;background: '+(colors[index%colors.length])+';" id="'+(idPrefix+index)+'">\n' +
+                    // '            <img src="../images/movie_0.png" />\n' +
+                    '            <div class="focus"></div>\n' +
+                    '            <div class="txt">'+(data)+'</div>\n' +
+                    '  </div>';
+            return div;
+        })
+        let data = [];
+        for (let i = 0; i < 6; i++) {
+            data.push(i);
+        };
+        rotation_view.bindData(data);
+        rotation_view.start();
+        //rotation_view end
+
+        //player_view start
+        player_view = PlayerView.createNew('player_view');
+        player_view.play("http://10.0.6.30:8080/video/fczlm4.mp4",0);
+        player_view.setOnPlayEventListener(onPlayEventListener);
+        // player_view.pause();
+        // player_view.start();
+        // player_view.resume();
+        // player_view.stop();
+        // player_view.destroy();
+        // player_view.playByTime();
+        // player_view.nextRight();
+        // player_view.nextLeft();
+        // player_view.replay();
+        // player_view.getCurrentPosition();
+        // player_view.getDuration();
+        // player_view.setMuteFlag();
+        // player_view.isPlaying;
+        // player_view.getPlayInfo();
+        // player_view.getVolume();
+        // player_view.setOnPositionChangeListener();
+        // player_view.setOnVolumeChangeListener();
+
+        //player_view end
+    }
+
+    var onPlayEventListener = {
+        /**
+         * 开始播放
+         */
+        onPlayStart: function () {
+            console.log(123);
+            View.$$('player_view').style.background='none'
+        },
+
+        /**
+         * 播放完成
+         */
+        onPlayComplete: function () {
+
+        },
+
+        /**
+         * 暂停播放
+         */
+        onPlayPause: function () {
+
+        },
+
+        /**
+         * 继续播放
+         */
+        onPlayResume: function () {
+
+        },
+
+        /**
+         * 播放停止
+         */
+        onPlayStop: function () {
+
+        },
+
+        /**
+         * 播放异常
+         */
+        onPlayError: function () {
+
+        }
+    }
+    var onPositionChangeListener = function (position,duration) {
+        // position当前进度
+        // duration总进度
+        // TODO
+    }
+    var onVolumeChangeListener = function (volume) {
+        // volume当前音量
+        // TODO
+    }
+</script>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta name="page-view-size" content="1280*720"/>
+    <meta charset="UTF-8">
+    <title>DEMO</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/test.css">
+    <link rel="stylesheet" href="../css/recycle_view_style.css">
+
+</head>
+
+<body>
+<div class="bg">
+    <img width="1280" height="720" src="../images/bg.jpg"/>
+</div>
+
+<div class="item" style="left:0px;top: 300px;" id="left_view"
+     view-click="onClickListener">
+    <div class="focus"></div>
+    <img src="../images/movie_0.png"/>
+    <div class="txt">11212345675432455647657543535647658</div>
+</div>
+
+<div class="recycle_view" style="left: 200px;width: 450px;height: 700px;" id="recycle_view"
+     view-animation="true"
+     view-orientation="h"
+     view-focus="onChildFocusChangeListener"
+     view-click="onChildClickListener"
+     view-scroll="onScrollListener"
+     view-adapter="adapter"
+     view-row="1"
+     view-marquee="1"
+     view-circulate="1"
+     view-locate="end"
+     view-select="1">
+
+</div>
+
+<div class="recycle_view" style="left: 700px;width: 450px;height: 700px;" id="recycle_view_left"
+     view-animation="true"
+     view-orientation="h"
+     view-focus="onChildFocusChangeListener"
+     view-click="onChildClickListener"
+     view-scroll="onScrollListener"
+     view-adapter="adapter"
+     view-row="1"
+     view-marquee="1"
+     view-circulate="1"
+     view-locate="start"
+     view-select="1">
+
+</div>
+
+</body>
+<script src="../js/xepg.min.js"></script>
+<script src="../js/view_utils.js"></script>
+<!--<script src="../js/recycle_view.js"></script>-->
+<script>
+
+    var firstFocus = "left_view";
+
+    var left_view = null;
+    var recycleView = null;
+    var recycle_view_left = null;
+
+    var index = 0;
+
+    // window.onload = function () {
+    //     initView();
+    //     setView();
+    //     initUtil();
+    // };
+
+    var initView = function () {
+        View.init(firstFocus);
+
+        left_view = View.createNew("left_view");
+
+        recycleView = RecycleViewM.createNew("recycle_view");
+        // recycleView.orientation = View.horizontal;
+        // recycleView.scrollCell = 100;
+        // recycleView.orientation = View.horizontal;
+        recycleView.scrollLocate = View.scrollEnd;
+        // recycleView.isLoop = false;
+        recycleView.isCirculate = true;
+        // recycleView.row = 3;
+        // recycleView.col = 5;
+        // recycleView.hasMarquee = true;
+        // recycleView.setAdapter(adapter);
+
+        recycle_view_left = RecycleViewM.createNew("recycle_view_left");
+        // recycle_view_left.scrollLocate = View.scrollStart;
+        recycle_view_left.isCirculate = true;
+    };
+
+    var setView = function () {
+        left_view.setFocusChange(null,null,null,function () {
+            var len = recycleView.data.length;
+            index = (index + 1) % len;
+            scrollTo(index);
+        });
+
+        recycleView.setFocusChange(function () {
+            console.log("info:边界上")
+        }, function () {
+            console.log("info:边界下")
+        }, function () {
+            left_view.requestFocus();
+        }, function () {
+            console.log("info:边界右")
+        });
+    };
+
+    var scrollTo = function (index,needAnimation) {
+        var len = recycleView.data.length;
+        var leftIndex = (index + len -1) % len;
+        var rightIndex = (index + 1) % len;
+        console.log("leftIndex:"+leftIndex);
+        console.log(index);
+        console.log("rightIndex:"+rightIndex);
+        if(!needAnimation && typeof (needAnimation) != "undefined"){
+            recycleView.scrollToIndexNoAnimation(leftIndex);
+            recycle_view_left.scrollToIndexNoAnimation(rightIndex);
+        }else{
+            recycleView.scrollByIndex(leftIndex);
+            recycle_view_left.scrollByIndex(rightIndex);
+        }
+
+    }
+
+    var adapter = function (idPrefix, index, row, col, data) {
+        var div = '<div class="item" style="top:' + (200 * row) + 'px;left: ' + (143 * col) + 'px;" id="' + (idPrefix + index) + '">\n' +
+            '<div class="focus"></div>' +
+            '        <img src="../images/movie_0.png"/>\n' +
+            '        <div class="txt" id="' + (recycleView.needMarqueeIdPrefix + index) + '">' + data + '.--------------------</div>\n' +
+            '    </div>';
+        return div;
+    };
+
+    var adapterM = function (idPrefix, index, row, col, data) {
+        var div = '<div class="component" style="left:' + (143 * col) + 'px;top: ' + (250 * row) + 'px;" id="' + (idPrefix + index) + '">\n' +
+            '        <div class="content">\n' +
+            '            <div class="item" id="'+(idPrefix+'content_'+index)+'">\n' +
+            '                <div class="focus"></div>\n' +
+            '                <img src="../images/movie_0.png"/>\n' +
+            '                <div class="txt" id="' + (idPrefix + "txt_" + index) + '">'+data+'加长加长加长加长加长</div>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <div class="btn" style="top: 210px;left: 0px;">\n' +
+            '            <div class="item" id="'+(idPrefix+'detail_'+index)+'">\n' +
+            '                <div class="focus"></div>\n' +
+            '                <div class="txt">查看</div>\n' +
+            '            </div>\n' +
+            '            <div class="item" style="left: 79px;" id="'+(idPrefix+'delete_'+index)+'">\n' +
+            '                <div class="focus"></div>\n' +
+            '                <div class="txt">删除</div>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '    </div>';
+        var component_object = {
+            div: div,
+            ids: [
+                idPrefix+'content_'+index,
+                idPrefix+'detail_'+index,
+                idPrefix+'delete_'+index
+            ]
+        };
+        return component_object;
+    };
+
+
+    var onScrollListener = {
+        /**
+         * 开始滚动
+         * @param view 被监听的view
+         * @param x 当前横坐标
+         * @param y 当前纵坐标
+         */
+        onStartScroll: function (view, x, y) {
+            // console.log("开始滚动：view.id:" + view.id + ",x:" + x + ",y:" + y);
+        },
+        /**
+         * 结束滚动
+         * @param view
+         * @param x
+         * @param y
+         */
+        onEndScroll: function (view, x, y) {
+            // console.log("结束滚动：view.id:" + view.id + ",x:" + x + ",y:" + y);
+        },
+
+        /**
+         * 滚动中
+         * @param view
+         * @param x
+         * @param y
+         */
+        onScrolling: function (view, x, y) {
+            // console.log("滚动中view.id:" + view.id + ",x:" + x + ",y:" + y);
+        }
+    };
+
+    var onClickListener = function (view) {
+        recycleView.scrollByIndex(20);
+    };
+
+    var onChildFocusChangeListener = function (view, hasFocus) {
+        console.log(view.id+(hasFocus?"上焦":"失焦"));
+    };
+
+    var onChildClickListener = function (view) {
+        console.log(view.id + "被点击");
+    };
+
+    var initUtil = function () {
+        var data = [];
+        for (var i = 0; i < 55; i++) {
+            data.push("数据：" + i);
+        }
+        recycleView.bindData(data);
+        recycle_view_left.bindData(data);
+
+        scrollTo(index,false);
+    };
+
+
+</script>
+</html>

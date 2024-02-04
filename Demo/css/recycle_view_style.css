@@ -1,0 +1,77 @@
+.component{
+    position: absolute;
+    width: 155px;
+    /*height: 250px;*/
+}
+
+.component .content{
+    position: absolute;
+}
+
+.component .content .item{
+    position: absolute;
+    width: 155px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.component .content .item_focus .focus{
+    width: 155px;
+    height: 200px;
+    background: url("../images/poster_focus.png") no-repeat;
+    opacity: 1;
+    animation-name: move;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.component .content .item .txt{
+    position: absolute;
+    left: 15px;
+    top: 155px;
+    width: 125px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    background: #555555;
+    font-size: 22px;
+}
+
+.component .btn{
+    position: absolute;
+}
+
+.component .btn .item{
+    position: absolute;
+    width: 77px;
+    height: 30px;
+    overflow: hidden;
+}
+
+.component .btn .item_focus .focus{
+    width: 77px;
+    height: 30px;
+    background: green;
+    opacity: 1;
+    animation-name: move;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.component .btn .item .txt{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 77px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    background: none;
+    font-size: 22px;
+}

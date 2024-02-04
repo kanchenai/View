@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta name="page-view-size" content="1280*720"/>
+    <meta charset="UTF-8">
+    <title>DEMO</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/test.css">
+    <style>
+        .item[data-a],
+        .item .pic[data-a]{
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+<div class="bg">
+<!--    <img width="1280" height="720" src="../images/bg.jpg"/>-->
+</div>
+
+<div data-a class="item" style="top:0px;left:0px;width: 1280px;height: 720px;" id="player_view">
+    <div data-a class="pic">dfasdfasd</div>
+</div>
+
+</div>
+
+<div class="log_view" id="log_view"></div>
+
+</body>
+<script src="../js/xepg.min.js"></script>
+<script src="../js/view_utils.js"></script>
+<script src="../js/special_views.js"></script>
+<script src="../js/player_util.js"></script>
+<script>
+    var firstFocus = "player_view";
+
+    var player_view = null;
+    var log_view = null;
+
+    window.onload = function () {
+        initView();
+        setView();
+        initUtil();
+    };
+
+    View.key.key_back_event = function () {
+
+    }
+
+    var initView = function () {
+        View.init(firstFocus);
+
+        log_view = LogView.createNew("log_view");
+        log_view.lineHeight = 16;
+        log_view.show();
+        log_view.i("显示打印");
+
+        player_view = PlayerView.createNew("player_view");
+    };
+
+    var setView = function () {
+
+    };
+
+    var initUtil = function () {
+        player_view.play("http://192.168.71.31:8080/video/fczlm4.mp4",10);
+    };
+
+
+</script>

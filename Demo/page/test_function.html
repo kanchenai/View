@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta name="page-view-size" content="1280*720"/>
+    <meta charset="UTF-8">
+    <title>DEMO</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/test.css">
+    <style>
+        div {
+            position: absolute;
+        }
+
+        .full {
+            width: 200px;
+            height: 300px;
+            background: blue;
+        }
+
+        .one {
+            width: 520px;
+            height: 200px;
+            top: 66px;
+            left: 81px;
+            background: red;
+        }
+
+        .one_0 {
+            width: 150px;
+            height: 200px;
+            top: 46px;
+            left: 31px;
+            background: #DF1010;
+        }
+
+        .one_1 {
+            width: 159px;
+            height: 230px;
+            top: 146px;
+            left: 131px;
+            background: #BF3030;
+        }
+
+        .one_2 {
+            width: 169px;
+            height: 203px;
+            top: 176px;
+            left: 111px;
+            background: #9F5050;
+        }
+
+        .two {
+            width: 965px;
+            height: 150px;
+            top: 166px;
+            left: 181px;
+            background: green;
+        }
+
+        .two_0 {
+            width: 165px;
+            height: 350px;
+            top: 166px;
+            left: 181px;
+            background: #10DF10;
+        }
+
+        .two_1 {
+            width: 265px;
+            height: 450px;
+            top: 266px;
+            left: 281px;
+            background: #30BF30;
+        }
+
+        .two_2 {
+            width: 595px;
+            height: 550px;
+            top: 366px;
+            left: 381px;
+            background: #509F50;
+        }
+
+        .two_0_0 {
+            width: 595px;
+            height: 550px;
+            top: 366px;
+            left: 381px;
+            background: #509F50;
+        }
+
+        .two_0_1 {
+            width: 295px;
+            height: 850px;
+            top: 466px;
+            left: 381px;
+            background: #509FFF;
+        }
+
+        .item{
+            overflow: visible;
+        }
+    </style>
+</head>
+
+<body>
+<div class="bg">
+    <img width="1280" height="720" src="../images/bg.jpg"/>
+</div>
+
+<div class="full" id="full">
+    <div class="one">
+        <div class="one_0"></div>
+        <div class="one_1"></div>
+        <div class="one_2"></div>
+    </div>
+    <div class="two">
+        <div class="two_0">
+            <div class="two_0_0"></div>
+            <div class="two_0_1"></div>
+        </div>
+        <div class="two_1">
+        </div>
+        <div class="two_2">
+        </div>
+    </div>
+</div>
+
+<div class="full" id="visibleSize"></div>
+
+</body>
+<script src="../js/xepg.min.js"></script>
+<script src="../js/view_utils.js"></script>
+<script src="../js/special_views.js"></script>
+<script>
+    window.onload = function () {
+        renderVisible();
+    };
+
+    var renderVisible = function () {
+        var dom = View.$$("full");
+        console.log(new Date().getTime())
+        var size = getVisibleSize(dom);
+        console.log(new Date().getTime())
+        console.log(size);
+        // View.$$("visibleSize").style.width = size.width+"px";
+        // View.$$("visibleSize").style.height = size.height+"px";
+    }
+
+    /**
+     * 获取节点显示大小
+     * 不计算class带有item的节点的子节点
+     * @param dom
+     * @return {{width: number, height: number}|null}
+     */
+    var getVisibleSize = function (dom) {
+        if (!dom instanceof Element) {
+            return null;
+        }
+        var size = {
+            width: dom.offsetWidth,
+            height: dom.offsetHeight
+        }
+        var children = dom.children;
+
+        if (dom.className.indexOf("item") > -1||dom.style.overflow == "hidden") {
+            return size;
+        }
+        if (children.length == 0) {
+            return size;
+        }
+
+        for (var i = 0; i < children.length; i++) {
+            var child = children[i];
+
+            if (child.style.display == "none" || child.style.visibility == "hidden") {
+                continue;
+            }
+            //获取子节点占位
+            var position = {
+                left: child.offsetLeft,
+                top: child.offsetTop
+            }
+
+            var childSize = getVisibleSize(child);
+            if(!childSize){
+                continue;
+            }
+
+            var seatSize = {
+                width:childSize.width + position.left,
+                height: childSize.height + position.top
+            }
+
+            if(seatSize.width>size.width){
+                size.width = seatSize.width;
+            }
+
+            if(seatSize.height>size.height){
+                size.height = seatSize.height;
+            }
+
+        }
+
+        return size;
+    }
+
+</script>
